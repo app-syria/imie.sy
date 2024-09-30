@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحقق من البريد الإلكتروني</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #2a9d8f;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 50%;
+            margin: 10px 0;
+            border: 2px solid #2a9d8f;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            background-color: #2a9d8f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 15px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #21867a;
+            transform: translateY(-2px);
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #e76f51;
+            font-weight: bold;
+        }
+        /* تحسين مظهر القائمة */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+        }
+        li {
+            font-size: 1.1em;
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #2a9d8f;
+            border-radius: 5px;
+            color: #2a9d8f;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>لشراء الارقام الغير مكررة (app-syria)أهلا وسهلا بكم في سيرفير
+</h1>
+    <label for="email">الرجاء إدخال بريدك الإلكتروني:</label>
+    <input type="text" id="email" placeholder="example@example.com" required>
+    <br><br>
+    <label for="numberCount">التي تود عرضها (1-50):</label>
+    <input type="number" id="numberCount" min="1" max="50" placeholder="أدخل عدد الأرقام" required>
+    <br><br>
+    <button id="validateButton">تحقق</button>
+    <p id="output"></p>
+
+    <script>
+        // الأرقام المحددة
+        const numbers = [
+            "358806005565328",
+            "358806005558646",
+            "358806006249146",
+            "358806006249161",
+            "358806006249187",
+            "358806005595317",
+            "358806006252470",
+            "358806006242471",
+            "358806005575269",
+            "358806005578610",
+            "358806005123456",
+            "358806005654321",
+            "358806005987654",
+            "358806005432198",
+            "358806005678901",
+            "358806005234567",
+            "358806005876543",
+            "358806005345678",
+            "358806005765432",
+            "358806005789012",
+            "358806005234890",
+            "358806005654789",
+            "358806005098765",
+            "358806005123890",
+            "358806005432890",
+            "358806005678234",
+            "358806005789345",
+            "358806005123456",
+            "358806005234567",
+            "358806005876543",
+            "358806005765432",
+            "358806005654321",
+            "358806005987654",
+            "358806005098765",
+            "358806005432198",
+            "358806005876543",
+            "358806005345678",
+            "358806005765432",
+            "358806005789012",
+            "358806005234890",
+            "358806005654789",
+            "358806005098765",
+            "358806005123890",
+            "358806005432890",
+            "358806005678234",
+            "358806005789345",
+            "358806005123456",
+            "358806005654321",
+            "358806005987654",
+            "358806005432198",
+            "358806005678901",
+            "358806005234567",
+            "358806005876543",
+            "358806005345678",
+            "358806005765432",
+            "358806005789012"
+        ];
+
+        // دالة للتحقق من صحة البريد الإلكتروني
+        function isValidEmail(email) {
+            return email === 'A@gmail.com';
+        }
+
+        // دالة للتحقق وعرض الأرقام
+        function validateEmail() {
+            const emailInput = document.getElementById('email').value;
+            const numberCountInput = parseInt(document.getElementById('numberCount').value);
+            const output = document.getElementById('output');
+
+            if (isValidEmail(emailInput)) {
+                // عرض الأرقام المحددة بناءً على المدخل
+                let result = "تم التحقق من البريد الإلكتروني بنجاح! الأرقام هي: ";
+                for (let i = 0; i < numberCountInput; i++) {
+                    if (i < numbers.length) {
+                        result += numbers[i] + (i < numberCountInput - 1 ? ', ' : '');
+                    }
+                }
+                output.innerHTML = result;
+            } else {
+                output.innerHTML = "البريد الإلكتروني غير صحيح.";
+            }
+        }
+
+        // إضافة حدث عند الضغط على الزر
+        document.getElementById('validateButton').onclick = validateEmail;
+    </script>
+</body>
+</html>
